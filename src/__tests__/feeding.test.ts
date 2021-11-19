@@ -10,7 +10,7 @@ import app from "../server";
  *  2. feeding a digipet leads to decreasing discipline
  */
 
-describe.skip("When a user feeds a digipet repeatedly, its nutrition increases by 10 each time until it eventually maxes out at 100", () => {
+describe("When a user feeds a digipet repeatedly, its nutrition increases by 10 each time until it eventually maxes out at 100", () => {
   beforeAll(() => {
     // setup: give an initial digipet
     const startingDigipet: Digipet = {
