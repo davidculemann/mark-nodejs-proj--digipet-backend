@@ -1,7 +1,14 @@
 import express from "express";
 import cors from "cors";
 import { getDigipet } from "./digipet/model";
-import { hatchDigipet, trainDigipet, walkDigipet, feedDigipet, ignoreDigipet } from "./digipet/controller";
+import {
+  hatchDigipet,
+  trainDigipet,
+  walkDigipet,
+  feedDigipet,
+  ignoreDigipet,
+  rehomeDigipet
+} from "./digipet/controller";
 
 const app = express();
 
@@ -56,13 +63,29 @@ app.get("/digipet/hatch", (req, res) => {
   }
 });
 
+app.get("/digipet/rehome", (req, res) => {
+  const digipet = getDigipet();
+  if (digipet) {
+    const digipet = rehomeDigipet();
+    res.json({
+      message:
+        "You have successfully rehomed your digitpet."
+    });
+  } else {
+    res.json({
+      message: "You can't rehome a digipet now because you don't have one!",
+      digipet,
+    });
+  }
+});
+
 app.get("/digipet/walk", (req, res) => {
   // check the user has a digipet to walk
   if (getDigipet()) {
     walkDigipet();
     res.json({
       message: "You walked your digipet. It looks happier now!",
-      digipet: getDigipet()
+      digipet: getDigipet(),
     });
   } else {
     res.json({
@@ -78,7 +101,7 @@ app.get("/digipet/train", (req, res) => {
     trainDigipet();
     res.json({
       message: "You trained your digipet. It looks more disciplined now!",
-      digipet: getDigipet()
+      digipet: getDigipet(),
     });
   } else {
     res.json({
@@ -88,14 +111,13 @@ app.get("/digipet/train", (req, res) => {
   }
 });
 
-
 app.get("/digipet/feed", (req, res) => {
   // check the user has a digipet to feed
   if (getDigipet()) {
     feedDigipet();
     res.json({
       message: "You fed your digipet. It looks happier now!",
-      digipet: getDigipet()
+      digipet: getDigipet(),
     });
   } else {
     res.json({
@@ -110,8 +132,9 @@ app.get("/digipet/ignore", (req, res) => {
   if (getDigipet()) {
     ignoreDigipet();
     res.json({
-      message: "You ignored your digipet. It looks sad and hungry and not disciplined now!",
-      digipet: getDigipet()
+      message:
+        "You ignored your digipet. It looks sad and hungry and not disciplined now!",
+      digipet: getDigipet(),
     });
   } else {
     res.json({

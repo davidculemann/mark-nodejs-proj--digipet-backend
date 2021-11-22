@@ -3,7 +3,7 @@ import {
   hatchDigipet,
   trainDigipet,
   walkDigipet,
-  ignoreDigipet
+  ignoreDigipet,
 } from "./controller";
 import { getDigipet, INITIAL_DIGIPET, setDigipet } from "./model";
 
@@ -199,4 +199,3 @@ describe("ignoreDigipet", () => {
     expect(getDigipet()).toHaveProperty("discipline", 0);
   });
 });
-

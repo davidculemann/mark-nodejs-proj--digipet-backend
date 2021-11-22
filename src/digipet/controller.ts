@@ -28,6 +28,15 @@ export function hatchDigipet(): Digipet {
   }
 }
 
+export function rehomeDigipet(): void {
+  if (getDigipet()) {
+    const newDigipet = undefined;
+    return setDigipet(newDigipet);
+  } else {
+    throw new Error("can't rehome a digipet when you don't have one!");
+  }
+}
+
 export function trainDigipet(): void {
   updateDigipetBounded("happiness", -5);
   updateDigipetBounded("discipline", 10);
@@ -43,4 +52,3 @@ export function ignoreDigipet(): void {
   updateDigipetBounded("nutrition", -10);
   updateDigipetBounded("discipline", -10);
 }
-

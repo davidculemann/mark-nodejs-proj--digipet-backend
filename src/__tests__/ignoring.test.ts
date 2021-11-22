@@ -65,5 +65,4 @@ describe("When a user ignores a digipet repeatedly, its stats decrease by 10 unt
     expect(response.body.digipet).toHaveProperty("nutrition", 0);
     expect(response.body.digipet).toHaveProperty("discipline", 0);
   });
-
 });
